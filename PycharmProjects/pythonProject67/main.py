@@ -8,7 +8,6 @@ CORS(app, resources={r"/mindmate": {"origins": "http://localhost:5000"}})
 
 THRESHOLD = 0.3
 
-
 def is_hateful(input_text: str) -> bool:
     hateful_speech = ["murder", "kill", "suicide", "harm", "violence", "attack"]
     for word in input_text.split():
@@ -60,6 +59,7 @@ def mindmate():
 
 
 if __name__ == '__main__':
+    # if you put this outside the main block, it will error
     model_name = "facebook/blenderbot-400M-distill"
     model = BlenderbotForConditionalGeneration.from_pretrained(model_name)
     tokenizer = BlenderbotTokenizer.from_pretrained(model_name)
