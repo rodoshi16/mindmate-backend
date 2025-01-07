@@ -1,68 +1,54 @@
-from textblob import TextBlob
-from flask_cors import CORS
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from transformers import BlenderbotTokenizer, BlenderbotForConditionalGeneration
+from textblob import TextBlob
 
 app = Flask(__name__)
-CORS(app, resources={r"/mindmate": {"origins": "http://localhost:5000"}})
+CORS(app, resources={r"/mindmate": {"origins": "http://localhost:3000"}})
 
 THRESHOLD = 0.3
 
 
-def is_hateful(input_text: str) -> bool:
-    hateful_speech = ["murder", "kill", "suicide", "harm", "violence", "attack"]
-    for word in input_text.split():
-        if word in hateful_speech:
-            return True
-    return False
+def find_sentiment(input_text: str):
+    analyzed_text = TextBlob(input_text)
+    return analyzed_text.sentiment.polarity
 
 
 def generate_response(input_text: str, chat_history: []):
-    sentiment = TextBlob(input_text).sentiment.polarity
+    sentiment = find_sentiment(input_text)
 
-    if is_hateful(input_text):
-        tone = ("Do not provide advice or information about harmful, violent, "
-                "respond "
-                "with care and compassion and ask about what happened ")
-    elif sentiment >= THRESHOLD:
-        tone = "Positive and engaging"
-    elif sentiment < 0.0:
-        tone = "empathetic and comforting"
+    if sentiment > THRESHOLD:
+        tone = "respond with an uplifting tone."
+    elif sentiment < -THRESHOLD:
+        tone = "respond with empathy and support."
     else:
-        tone = "neutral and supportive, encourage open ended conversations"
+        tone = "respond in a helpful and understanding tone."
 
-    prompt = (f"You are a mental health assistant bot. Your job is to listen, "
-              f"understand, and respond appropriately based on user emotions. "
-              f"Here is the user's latest message: '{input_text}'. The tone "
-              f"of your response should be {tone}. Here is the previous "
-              f"conversation history: {chat_history}")
+    prompt = (f"You are a mental health assistant bot. Here is the user's "
+              f"message: '{input_text}'. {tone} Here is the "
+              f"previous conversation: {chat_history}")
 
     inputs = tokenizer([input_text], return_tensors='pt')
     reply_ids = model.generate(**inputs)
-    response = tokenizer.batch_decode(reply_ids)
+    response = tokenizer.batch_decode(reply_ids, skip_special_tokens=True)[0]
+
     return response
 
-# Making an API endpoint
-# mindmate is now a URL path the backend would listen to for HTTP requests
 
-
-@app.route('/mindmate', methods=['GET', 'POST'])
+@app.route('/mindmate', methods=['POST'])
 def mindmate():
-    # method to get the JSON data from the react frontend
-    # frontend will make POST request to backend and send JSON data
-    data = request.get_json()
-    user_input = data.get('user_input')
+    data = request.json
+    user_input = data.get('user_Input', '')
     chat_history = data.get('chat_history', [])
 
     response = generate_response(user_input, chat_history)
-    chat_history.append(f"User {user_input} Bot: {response}")
+    chat_history.append({"sender": "Bot", "message": response})
+
     return jsonify({'response': response})
 
 
 if __name__ == '__main__':
-    # if you put this outside the main block, it will error
     model_name = "facebook/blenderbot-400M-distill"
     model = BlenderbotForConditionalGeneration.from_pretrained(model_name)
     tokenizer = BlenderbotTokenizer.from_pretrained(model_name)
     app.run(debug=True)
-
