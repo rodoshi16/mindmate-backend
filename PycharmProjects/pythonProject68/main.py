@@ -28,10 +28,9 @@ def generate_response(input_text: str, chat_history: []):
               f"message: '{input_text}'. {tone} Here is the "
               f"previous conversation: {chat_history}")
 
-    inputs = tokenizer([prompt], return_tensors='pt')
-    reply_ids = model.generate(**inputs)
-    response = tokenizer.batch_decode(reply_ids, skip_special_tokens=True)[0]
-
+    model_input = tokenizer([input_text], return_tensors='pt')
+    model_output = model.generate(**model_input)
+    response = tokenizer.batch_decode(model_output, skip_special_tokens=True)[0]
     return response
 
 
