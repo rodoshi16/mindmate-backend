@@ -11,12 +11,40 @@ class Stack:
     def push(self, item: Any) -> None:
         self._items.append(item)
 
-    def pop(self, item: Any) -> None:
+    def pop(self) -> Any:
+        last_e = Any
         if self._items:
-            self._items.pop(item)
+            last_e = self._items.pop()
+        return last_e
 
     def is_empty(self):
         return self._items == []
+
+    def peek(self) -> Any:
+        """"
+        >>> s = Stack()
+        >>> s.push(1)
+        >>> s.push(2)
+        >>> s.push(3)
+        >>> s.push(4)
+        >>> s.peek()
+        >>> s.pop()
+        4
+        >>> s.pop()
+        3
+        >>> s.pop()
+        2
+        >>> s.pop()
+        1
+
+        """
+        lst = []
+        while not self.is_empty():
+            lst.append(self._items.pop())
+        lst = lst[::-1]
+        for item in lst:
+            self.push(item)
+
 
 
 

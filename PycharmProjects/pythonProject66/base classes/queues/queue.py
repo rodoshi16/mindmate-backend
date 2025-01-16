@@ -4,20 +4,20 @@ from typing import Any
 
 
 class Queue:
-    self._items: list
+    _items: list
 
     def __init__(self):
-        self.items = []
+        self._items = []
 
     def push(self, item: Any):
-        self.items.append(item)
+        self._items.append(item)
 
     def pop(self):
         if self._items:
-            self.items.pop(self._items[0])
+            self._items.pop(self._items[0])
 
     def is_empty(self):
-        return self.items == []
+        return self._items == []
 
 
 
