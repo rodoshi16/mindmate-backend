@@ -23,7 +23,7 @@ def findClosestNumber(nums: list[int]) -> int:
 
 #Leetcode 1768
 class Solution:
-    def mergeAlternately(word1: str, word2: str) -> str:
+    def mergeAlternately(self, word1: str, word2: str) -> str:
         result = ''
         max_lst= []
         min_lst = []
@@ -41,5 +41,4 @@ class Solution:
 
         result += max_lst[len(min_lst):]
         return result
-
 
