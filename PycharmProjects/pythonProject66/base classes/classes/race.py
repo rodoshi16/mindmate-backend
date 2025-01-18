@@ -21,7 +21,6 @@ class Race:
             else:
                 self.speed_list['over 40'].append(runner)
 
-                w
 class Runner:
     name: str
     email: str

@@ -25,20 +25,19 @@ def findClosestNumber(nums: list[int]) -> int:
 class Solution:
     def mergeAlternately(self, word1: str, word2: str) -> str:
         result = ''
-        max_lst= []
-        min_lst = []
-        max_len = max(len(word1), len(word2))
-        for i in range(min(len(word1), len(word2))):
+        m = len(word1)
+        n = len(word2)
+
+        for i in range(min(m, n)):
             result += word1[i]
             result += word2[i]
 
-        if len(word1) == max_len:
-            max_lst = word1
-            min_lst = word2
+        if m < n:
+            result += word2[len(word1):]
         else:
-            max_lst = word2
-            min_lst = word1
+            result += word1[len(word2):]
 
-        result += max_lst[len(min_lst):]
         return result
+
+
 
