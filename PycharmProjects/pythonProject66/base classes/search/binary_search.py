@@ -1,3 +1,4 @@
+#Leetcode 704
 def search(nums: list[int], target: int) -> int:
     l = 0
     r = len(nums) - 1
