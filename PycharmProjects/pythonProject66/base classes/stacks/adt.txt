@@ -1,0 +1,46 @@
+Abstract data types defines a set of operations and behaviours for a data structure without
+specifying how the data is organized in memory. It gives an implementation independent overview.
+
+
+- defines class of objects and operations peroformed without implementation details
+- List ADT, Stack ADT, Queue ADT
+
+* List ADT - a sequential collection of elements that supports a set of operations without speicifying implementation. Operations should be :
+    - get()
+    - insert()
+    - remove()
+    - replace()
+    - size()
+    - isEmpty()
+    - isFull()
+
+* Stack ADT - a linear data structure that follows Last In, First Out principle. Elements can be added and removed from one end (top of the stack)
+    - push()
+    - pop()
+    - peek()
+    - size()
+    - isEmpty()
+    - isFull()
+
+* Queue ADT - a linear data structure that follows Last In, last Out principle. Elements can be added and removed from one end (top of the stack)
+    - enqueue()
+    - dequeue()
+    - peek()
+    - size()
+    - isEmpty()
+    - isFull()
+
+Advantages of Abstract Data Types:
+
+- Encapsulation: ADT gives you a way to encapsulate data and operations in a single unit, you can manage and modify the data better
+- Abstraction: Allows users to work with data structures without knowing implementation details
+- Data structure independence: different data structures can be used to implement
+- Information hiding: ADTs can protect integrity of the data by controlling access
+
+
+
+
+
+
+
+

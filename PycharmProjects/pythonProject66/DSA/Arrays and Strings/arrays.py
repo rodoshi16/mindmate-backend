@@ -8,7 +8,7 @@ def findClosestNumber(nums: list[int]) -> int:
     :param nums:
     :return:
     """
-    distance = math.inf
+    distance = math.inf 
     largest_value = 0
     for item in nums:
         if abs(item) - 0 <= distance:
@@ -38,25 +38,3 @@ class Solution:
             result += word1[len(word2):]
 
         return result
-
-class Solution:
-    def mergeAlternately(self, word1: str, word2: str) -> str:
-        result = ''
-        m = len(word1)
-        n = len(word2)
-
-        for i in range(min(m, n)):
-            result += word1[i]
-            result += word2[i]
-
-        if m < n:
-            result += word2[len(word1):]
-        else:
-            result += word1[len(word2):]
-
-        return result
-
-
-
-
-

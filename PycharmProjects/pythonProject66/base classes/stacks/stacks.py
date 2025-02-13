@@ -1,3 +1,4 @@
+import doctest
 from typing import Any
 # A data type similar to lists but you can only interact with the top
 
@@ -38,14 +39,48 @@ class Stack:
         1
 
         """
-        lst = []
-        while not self.is_empty():
-            lst.append(self._items.pop())
-        lst = lst[::-1]
-        for item in lst:
-            self.push(item)
+
+        last_ele = self.pop()
+        self.push(last_ele)
+        return last_ele
+        # lst = []
+        # while not self.is_empty():
+        #     lst.append(self._items.pop())
+        # lst = lst[::-1]
+        # for item in lst:
+        #     self.push(item)
 
 
+def balanced_parenthesis(line: str):
+    """Determine if the parenthesis of the string given is a balanced or not.
+
+    # >>> balanced_parenthesis('[(a * (3 + b))]')
+    # True
+    # >>> balanced_parenthesis('(a * (3 + b]]')
+    # False
+    >>> balanced_parenthesis('1 + 2(x -y)}')
+    False
+    # >>> balanced_parenthesis('3 - (x')
+    # False
+
+    """
+    matching_pairs = {"(": ")", "[": "]", "{": "}"}
+    s = Stack()
+
+    for c in line:
+        if c in matching_pairs:
+            s.push(c)
+        # not -> int, operation, closing
+
+    for c in line:
+        if matching_pairs[s.peek()] == c:
+            s.pop()
+
+    return s.is_empty()
+
+
+if __name__ == '__main__':
+    doctest.testmod()
 
 
 
