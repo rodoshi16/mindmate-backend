@@ -1,0 +1,35 @@
+Problem and Solution:
+
+One of the biggest concerns for banking customers today is fraud, security
+breaches, and unauthorized transactions. People get scammed, hacked, or
+lose money due to poor financial management.
+
+There have been several incidents where customers have pointed fingers at
+Banking systems and companies such as CIBC for not being able to detect the
+fraudulent transactions.
+
+Therefore, my solution is to build a Machine Learning Fraud Detection system that
+will detect corrupt transactions and provide users with an alert before proceeding
+right before making the transaction through CIBC, get an SMS and Email alert as well.
+It will detect the fraud and present a frequency and risk score.
+If the user agrees, they will be asked for a biometric scan to proceed.
+
+This project will use supervised learning and the ML model will undergo layers of
+beta testing to ensure its highest performance.
+
+It will be containerized on docker and deployed on AWS.
+
+Dataset: ****
+
+The dataset that the ML model is trained with is extremely important.
+Garbage in -> Garbage out. The quality of the training dataset is crucial. It
+must be labelled since we are using supervised learning. The data also must be
+cleaned and reduced following a CSV format for the model to understand.
+
+
+
+
+
+
+
+
