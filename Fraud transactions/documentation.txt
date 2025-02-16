@@ -27,6 +27,14 @@ must be labelled since we are using supervised learning. The data also must be
 cleaned and reduced following a CSV format for the model to understand.
 
 
+Machine Learning Model: Support Vector Machine SVM 
+
+SVM is a supervised machine learning algorithm used for classification. In this 
+example, we need to figure out if the transaction is fraud or not - so a binary value 
+0 or 1. 
+
+
+
 
 
 
