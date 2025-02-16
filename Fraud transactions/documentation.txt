@@ -27,11 +27,28 @@ must be labelled since we are using supervised learning. The data also must be
 cleaned and reduced following a CSV format for the model to understand.
 
 
-Machine Learning Model: Support Vector Machine SVM 
+Machine Learing Model: Logistic Regression 
 
-SVM is a supervised machine learning algorithm used for classification. In this 
-example, we need to figure out if the transaction is fraud or not - so a binary value 
-0 or 1. 
+*******
+
+
+Why deply the model on AWS? 
+
+- Remote access via API : The ML model needs to interact with the banking system 
+and AWS allows me to host it as a REST API so CIBC or any other systen can send transaction data
+for fraud predictions
+- Scability - For multiple banks to use the fraud detection system, AWS can handle 
+large traffic without performance issues
+- Security - Banking apps would require secure requiremenys, AWS services like Lambda 
+can help protect sensitive data 
+- Reliability - Since the model would run on cloud servers instead of local machine, it would 
+be 24/7 available 
+
+
+
+
+
+
 
 
 
