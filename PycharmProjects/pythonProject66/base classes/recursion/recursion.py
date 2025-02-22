@@ -19,3 +19,43 @@ def nested_list(l: list):
     else:
         return l
 
+
+def first_at_depth(lst: list, depth: int):
+    """
+
+
+    >>> first_at_depth(100, 0)
+    100
+    >>> first_at_depth(100,3)
+    True
+    >>> first_at_depth([1, [2,3], [[7,8], 9]], 2)
+    :param int:
+    :return:
+    """
+    if depth == 0:
+        return lst
+
+    if isinstance(lst, list):
+        for item in lst:
+            result = first_at_depth(item, depth-1)
+            if result is not None:
+                return result
+    return None
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
