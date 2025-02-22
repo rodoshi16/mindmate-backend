@@ -1,0 +1,28 @@
+Trees: Do not have a linear order, they have a hierarchical structure where each
+node is connected to multiple nodes.
+
+A collection of values with directed EDGES between them and NO CYCLES
+
+Tree terminology:
+
+Tree is either empty or non-empty (non-empty tree has a root connected to
+0 or more subtrees)
+
+* size - number of nodes in a tree
+* path - sequence of nodes where there is an edge between each pair
+* leaf - a node with no subtrees
+* height - the number of values on the longest path of a tree
+
+The relationship between the height of the tree and the height of the subtree: 1 + height of subtree
+Depth: number of nodes, empty trees have a depth of zero.
+Children: A value directly connected underneath another value. Number of children is
+the same as the number of subtrees.  sum of leaves of all subtrees = number of leaves of a tree
+
+Branching factor - the max num of children of a tree
+Subtree - a non- empty tree that represents a child node as well its descendants
+leaf is also a subtree
+
+
+
+subtree: list[Tree]
+
