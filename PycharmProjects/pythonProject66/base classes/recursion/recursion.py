@@ -1,4 +1,5 @@
 # Recursion is when a function calls itself on other functions
+from typing import Union
 
 def sum_list(l):
     if len(l) == 0:
@@ -43,19 +44,18 @@ def first_at_depth(lst: list, depth: int):
     return None
 
 
+def add_one(obj: Union[list, int]) -> None:
+    """
 
+    >>> lst = [1,[2,3], [[[5]]]]
+    >>> add_one(lst)
+    >>> lst
+    [2, [3, 4], [[[6]]]]
+    """
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    if isinstance(obj, int):
+        return obj + 1
+    else:
+        for i in range(len(obj)):
+            obj[i] = add_one(obj[i])
+        return obj
