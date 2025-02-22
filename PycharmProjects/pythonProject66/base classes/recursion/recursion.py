@@ -59,3 +59,51 @@ def add_one(obj: Union[list, int]) -> None:
         for i in range(len(obj)):
             obj[i] = add_one(obj[i])
         return obj
+
+
+def fib(n: int):
+    """
+
+    >>> fib(3)
+    2
+    >>> fib(5)
+    5
+    >>> fib(7)
+    13
+
+    :param n:
+    :return:
+    """
+
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fib(n-1) + fib(n-2)
+
+
+def fib2(n: int, seen={}):
+    """
+    There is a lot of redundancy in the fibonnaci numbers being computated. For
+    example, fib(28) needs to go through calculations of all fib numbers from 1
+    to 27. Instead, we can save the result in a dict and reuse it. It reduces the
+    steps from 357 to 95.
+
+    >>> fib2(3)
+    2
+    >>> fib2(8)
+    21
+
+    """
+
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    elif n in seen:
+        return seen[n]
+    else:
+        seen[n] = fib2(n-1, seen) + fib2(n-2, seen)
+        return seen[n]
+
