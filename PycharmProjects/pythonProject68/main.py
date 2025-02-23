@@ -4,7 +4,7 @@ from transformers import BlenderbotTokenizer, BlenderbotForConditionalGeneration
 from textblob import TextBlob
 
 app = Flask(__name__)
-CORS(app, resources={r"/mindmate": {"origins": "http://localhost:3000"}})
+CORS(app, resources={r"/mindmate": {"origins": "http://localhost:3001"}})
 
 THRESHOLD = 0.3
 
