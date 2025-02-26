@@ -28,6 +28,7 @@ def generate_response(input_text: str, chat_history: []):
               f"message: '{input_text}'. {tone} Here is the "
               f"previous conversation: {chat_history}")
 
+    # give the input, return the output and decode the response
     model_input = tokenizer([input_text], return_tensors='pt')
     model_output = model.generate(**model_input)
     response = tokenizer.batch_decode(model_output, skip_special_tokens=True)[0]
@@ -39,7 +40,6 @@ def mindmate():
     data = request.json
     user_input = data.get('user_Input', '')
     chat_history = data.get('chat_history', [])
-
     response = generate_response(user_input, chat_history)
     chat_history.append({"sender": "Bot", "message": response})
 
@@ -47,6 +47,7 @@ def mindmate():
 
 
 if __name__ == '__main__':
+    #Loading the distilled model from Huggingface
     model_name = "facebook/blenderbot-400M-distill"
     model = BlenderbotForConditionalGeneration.from_pretrained(model_name)
     tokenizer = BlenderbotTokenizer.from_pretrained(model_name)
